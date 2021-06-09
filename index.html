@@ -35,7 +35,7 @@ var getUrlString = location.href;
 var url = new URL(getUrlString);
 
 document.getElementById("text").value= url.searchParams.get('text') ;
-  
+  $('title').html('複製 - ' + url.searchParams.get('text'));
   function copy() {
 var copys=document.getElementById("text");
 copys.select();
