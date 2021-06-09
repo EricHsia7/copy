@@ -1,14 +1,11 @@
 <meta charset="UTF-8">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 <title>複製</title>
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <style>
+     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400,500,700&display=swap');
   .msg {background:rgba(0, 0, 0, 0.7);width:auto;height:auto;padding:5px 15px;position:fixed;top:-80px;left:50%;transform:translate(-50%,-0%);border-radius:25px;color:#ffffff;}
   .txt {outline:none; -webkit-tap-highlight-color:rgba(0,0,0,0);padding:10px;resize : none;width:90%;max-width:350px;height:150px; border:none; background-color:#f5f5f5;font-size:20px; border-radius: 20px;margin-top:20px;-webkit-appearance:none;caret-color:rgba(0, 0, 0, 0.01);color:#212121;}
-   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400,500,700&display=swap');
 .btn {
   width:130px;
   height:55px;
@@ -31,6 +28,7 @@
   <br>
   <div ripple-onclick="copy()" class="btn">複製內容</div>
   <script src="https://erichsia7.github.io/ripple.js/ripple.min.js"></script>
+<script src="https://erichsia7.github.io/prompt.js/prompt.min.js"></script>
 
 <script>
 var getUrlString = location.href;
@@ -42,8 +40,7 @@ document.getElementById("text").value= url.searchParams.get('text') ;
 var copys=document.getElementById("text");
 copys.select();
 document.execCommand("Copy");
-setTimeout("document.activeElement.blur(); ",800);
-    $('#msg').animate({top: 50 + 'px' },333).delay(1111).animate({top: -80 + 'px' },333);
+$('body').prompt({'message':'已複製','time':1200,'animate':'slide'});
 }
   ripple('.btn','#000','0.3',1200,'true');
 </script>
