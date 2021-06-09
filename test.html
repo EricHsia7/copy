@@ -1,0 +1,835 @@
+<meta charset="UTF-8">
+<title>copy</title>
+<head>
+
+</head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.0/masonry.pkgd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<link href="https://erichsia7.github.io/colors/c2_512.png" sizes="512x512" rel="apple-touch-icon-precomposed" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="defualt" />
+<link type="image/x-icon" href="https://erichsia7.github.io/colors/c2_ico.ico" rel="icon" />
+<link type="image/x-icon" href="https://erichsia7.github.io/colors/c2_ico.ico" rel="bookmark" />
+<link type="image/x-icon" href="https://erichsia7.github.io/colors/c2_ico.ico" rel="shortcut icon" />
+<link rel="manifest" href="https://erichsia7.github.io/colors/manifest.json?qa">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<style>
+ @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400,500,700&display=swap');
+:root {
+  --loading-grey: #ededed;
+ --loading-ba:#fff;
+ --loading-ffg: 255 ;
+}
+  * {outline:none; -webkit-tap-highlight-color:rgba(0,0,0,0);}
+body {
+  background-color: #fff;
+  margin:0px;
+  padding:0px;
+}
+
+.card {
+  width: calc(50vw - 30px);
+  background-color: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  position:relative;
+  margin:10px;
+  min-width:180px;
+ border:1px #e3e3e3 solid;
+ transform:translateX(5px);
+}
+.card .image {
+  width:100%;
+  height:120px;
+  position:relative;
+}
+.content {
+  padding: 2rem 1.8rem;
+  position:relative;
+}
+
+h4 {
+  margin: 0 0 1rem;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  position:relative;
+ font-family: 'Noto Sans TC', sans-serif;
+  font-weight:700;
+}
+
+.description {
+  font-size: 1rem;
+  line-height: 1.4rem;
+  position:relative;
+  min-height: 38px;
+  
+}
+.description a {
+text-decoration:none;
+  color:#000;
+  background:#f5f5f5;
+  padding:8px;
+  margin:0px;
+  border-radius:99em;
+  position:absolute;
+  top:0px;
+ font-family: 'Noto Sans TC', sans-serif;
+  font-weight:400;
+}
+.loading .image,
+.loading h4,
+.loading .description {
+  background-color: var(--loading-grey);
+  background: linear-gradient(
+    100deg,
+    rgba(var(--loading-ffg), var(--loading-ffg), var(--loading-ffg), 0) 40%,
+    rgba(var(--loading-ffg), var(--loading-ffg), var(--loading-ffg), .5) 50%,
+    rgba(var(--loading-ffg), var(--loading-ffg), var(--loading-ffg), 0) 60%
+  ) var(--loading-grey);
+  background-size: 200% 100%;
+  background-position-x: 180%;
+  /*animation: 1s loading ease-in-out infinite;*/
+}
+
+ .card[se="1"]:after {
+  font-family: "Font Awesome 5 Free";
+  content:'\f058';
+  position:absolute;
+  top:5px;
+  left:5px;
+  font-size:20px;
+  color:rgba(var(--seico-color),var(--seico-color),var(--seico-color),1);
+  transition:0.3s;
+}
+.card[se="1"][selectedy="1"]::after {
+  font-family: "Font Awesome 5 Free"; font-weight: 900;
+  content:'\f058';
+  position:absolute;
+  top:5px;
+  left:5px;
+  font-size:20px;
+  color:rgba(var(--seico-color),var(--seico-color),var(--seico-color),1);
+}
+ .card[se="1"] .coloropenbtnj {
+  opacity:0.3;
+  transition:0.3s;
+ }
+@keyframes loading {
+  to {
+    background-position-x: -20%;
+  }
+}
+
+.loading h4 {
+  min-height: 1.6rem;
+  border-radius: 4px;
+  animation-delay: .05s;
+}
+
+.loading .description {
+  min-height: 37px;
+  border-radius: 4px;
+  animation-delay: .06s;
+}
+ #cardbox {
+padding-bottom:100px;
+  transform:translateY(0px);
+  transition:0.3s;
+}
+ 
+ .cl2 {
+  background:rgba(250,250,250,0.8) url(https://erichsia7.github.io/colors/close2.png);
+}
+ .de3 {
+  background:rgba(250,250,250,0.8) url(https://erichsia7.github.io/colors/delete.png);
+}
+  .shfav {
+  background:rgba(250,250,250,0.8) url(https://erichsia7.github.io/colors/share3.png);
+}
+ .qrt {
+  background:rgba(250,250,250,0.8) url(https://erichsia7.github.io/colors/qrcode.png);
+}
+ .set {
+  background:rgba(250,250,250,0.8) url(https://erichsia7.github.io/colors/edit.png);
+  opacity:0.3;
+  transition:0.3s;
+ }
+   .btn {
+  background-size:25px;
+  background-position:center;
+  background-repeat:no-repeat;
+  border-radius:99em;
+  font-weight:medium;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size:1.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:#333;
+  width:45px;
+  height:45px;
+ }
+ #fmenu {
+  position:fixed;
+  left:50%;
+  bottom:30px;
+  transform:translateX(-50%);
+  width:285px;
+  height:45px;
+}
+.lle {
+  float:left;
+  margin-left:10px;
+}
+   .ladbar {
+background:#000;
+position:fixed;
+top:0px;
+left:0px;
+width:0px;
+height:2px;
+transition:width 0.3s ,background 0s;
+}
+ #cardbox {
+  background:rgba(0, 0, 0, 0);
+ }
+ 
+ #delbox {
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%) scale(0.8);
+  opacity:0;
+  width:280px;
+  height:180px;
+  background:#fff;
+  border-radius:15px;
+  overflow:hidden;
+  display:none;
+  transition:0.5s;
+}
+#delbox #delyes {
+  position:absolute;
+  bottom:10px;
+  left:10px;
+  background:#fff;
+  height:45px;
+  width:calc(50% - 15px);
+  border-radius:15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:#000;
+  font-size:20px;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight:700;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.08);
+}
+#delbox #delno {
+  position:absolute;
+  bottom:10px;
+  right:10px;
+  background:#fff;
+  height:45px;
+  width:calc(50% - 15px);
+  border-radius:15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:#000;
+  font-size:20px;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight:700;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.08);
+}
+
+#delbg {
+  position:fixed;
+  top:0px;
+  left:0px;
+  width:100%;
+  height:100%;
+  background:rgba(0, 0, 0, 0.6);
+  -webkit-backdrop-filter: blur(15px);
+backdrop-filter: blur(15px);
+  display:none;
+}  
+#delbox #deltxt {
+  position:absolute;
+  top:10px;
+  left:10px;
+  width:calc(100% - 20px);
+  height:calc(100% - 45px - 30px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:#000;
+  font-size:20px;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight:500;
+  flex-direction:column
+}
+
+ .empty {
+  width:100%;
+  max-width:300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+}
+.empty img {
+  width:100%;
+  max-width:300px;
+}
+.empty span {
+  color:#1082af;
+}
+ 
+ 
+ #qrbox {
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%) scale(0.8);
+  opacity:0;
+  width:250px;
+  height:305px;
+  background:#fff;
+  border-radius:15px;
+  overflow:hidden;
+  display:none;
+  transition:0.5s;
+}
+#qrbox #qrclbtn {
+  position:absolute;
+  bottom:10px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#fff;
+  height:45px;
+  width:calc(100% - 20px);
+  border-radius:15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:#000;
+  font-size:20px;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight:700;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.08);
+}
+#qr {
+  position:absolute;
+  top:0px;
+  left:0px;
+  width:250px;
+  height:250px;
+  background:#fff;
+  overflow:hidden;
+}
+#qr img {
+  width:230px;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+}
+#qrbg {
+  position:fixed;
+  top:0px;
+  left:0px;
+  width:100%;
+  height:100%;
+  background:rgba(0, 0, 0, 0.6);
+  -webkit-backdrop-filter: blur(15px);
+backdrop-filter: blur(15px);
+  display:none;
+}  
+ 
+ .selecttop {
+  position:fixed;
+  top:-55px;
+  left:0px;
+  width:100%;
+  height:50px;
+  background:rgba(0,0,0,0.5);
+  -webkit-backdrop-filter: blur(15px);
+backdrop-filter: blur(15px);
+  color:#fff;
+  opacity:0;
+  transition:0.3s;
+}
+.selecttop span#selectnumber {
+position:absolute;
+  left:10px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:18px;
+}
+.selecttop span#selectall {
+  position:absolute;
+  right:10px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:18px;
+}
+ 
+  @media (prefers-color-scheme: dark) {
+   #qrbox {
+  background:#1a1a1a;
+  display:none;
+}
+#qrbox #qrclbtn {
+  background:#1a1a1a;
+  color:#fff;
+}
+#qr {
+  background:#1a1a1a; 
+}
+#qr img {
+  filter: invert(89.79%);
+}
+    #delbox {
+     background:#1a1a1a;
+   }
+   #delbox #delyes ,#delbox #delno {
+     background:#1a1a1a;
+    color:#fff;
+   }
+   #deltxt,#deltxt span,#deltxt b{
+    color:#fff;
+   }
+    body {
+    background:#1a1a1a;
+  }
+   :root {
+  --loading-grey: #1f1f1f;
+  --loading-ffg: 50 ;
+}
+   .lle {
+  float:left;
+  margin-left:10px;
+  filter: invert(100%);
+}
+   .ladbar {
+background:#fff;
+}
+   .card {
+  width: calc(50vw - 30px);
+  background-color: #1a1a1a;
+  border-radius: 15px;
+  overflow: hidden;
+  position:relative;
+  margin:10px;
+  min-width:180px;
+ border:1px #303030 solid;
+ transform:translateX(5px);
+}
+ }
+</style>
+<body>
+<div id="cardboxlo" ></div>
+
+<div id="eelo" style="position:fixed;top:0px;left:0px;width:100%;height:100%;display:none;">
+<div class="empty">
+<img src="https://erichsia7.github.io/colors/favorite/empty_svg_3.svg">
+  <span>沒有任何喜好項目。</span>
+</div>
+</div>
+
+<div id="cardbox"></div>
+
+<div id="fmenu">
+ <div class="shfav lle btn"></div>
+ <div class="qrt lle btn"></div>
+ <div class="de3 lle btn"></div>
+ <div class="set lle btn" sdf="1"></div>
+ <div class="cl2 lle btn"></div>
+</div>
+
+<div id="qrbg"></div>
+<div id="qrbox">
+<div id="qr"></div>
+  <div id="qrclbtn">關閉</div>
+</div>
+
+  <div id="delbg"></div>
+<div id="delbox">
+  <div id="deltxt">
+    <span>確認<b>永久刪除</b>所有喜好項目</span>
+  </div>
+  <div id="delyes">確認</div>
+  <div id="delno">取消</div>
+</div>
+ 
+<div class="selecttop">
+  <span id="selectnumber">已選取0個</span>
+  <span id="selectall" ser="0">全選</span>
+</div>
+<div class="ladbar"></div>
+<script>
+lade = 0 ;
+function ladbaradd() {
+lade += 5+Math.floor(Math.random() * 2) ;
+$('.ladbar').css({'width':lade + '%'});
+if(lade > 80) {
+clearInterval(ladbar);
+}
+}
+ladbaradd();
+var ladbar = setInterval(ladbaradd,300);
+
+$(document).ready(function() {
+setTimeout(function() {
+clearInterval(ladbar);
+$('.ladbar').css({'width':'105%','transition':'0.7s'});
+},1000);
+
+setTimeout(function() {
+$('.ladbar').css({'opacity':'0'});
+},1500);
+
+setTimeout(function() {
+$('.ladbar').css({'display':'none'});
+},2300);
+});
+</script>
+
+<script src="https://erichsia7.github.io/prompt.js/prompt.min.js"></script>
+
+      <script>
+       var getUrlString = location.href;
+var url = new URL(getUrlString);
+var open = url.searchParams.get('open') ;
+var fado = url.searchParams.get('fado') ;
+var fadod = url.searchParams.get('fadod') ;
+var favscroll = url.searchParams.get('scroll') ;
+       
+function genid(mode) {
+if(mode === "random"){
+var genidchars = "0123456789abcdefghijklmnopqrstuvwxyz";
+            var genid = "";
+            for (var i = 0; i < 16; i++) {
+                var genrandomNumber = Math.floor(Math.random() * genidchars.length);
+                genid += genidchars.substring(genrandomNumber, genrandomNumber + 1);
+            }
+  return genid ;
+}
+          
+ if(mode === "time"){
+   var gtoday=new Date();
+   var genid2 = (gtoday.getMonth()+1) + '_' + gtoday.getDate() + '_' + gtoday.getHours() + '_' + gtoday.getMinutes() + '_' + gtoday.getSeconds() + '-' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8)) + '' + (1+Math.floor(Math.random() * 8));
+   
+   return genid2
+ }
+  
+  if(mode === "number"){
+   
+   var genid3 = '' ;
+for (var i = 0; i < 16; i++) {
+  genid3 += '' + (0+Math.floor(Math.random() * 9))
+}
+   return genid3
+ }
+  
+  if(mode === "uuid"){
+var genidchars4 = "abcdef012345678";
+    var geniduu = [8,4,4,4,12];
+            var genid4 = "";
+            var genid5 = "";
+    for (var ia = 0; ia < geniduu.length; ia++) {
+      var genid4 = "";
+            for (var i = 0; i < geniduu[ia]; i++) {
+                var genrandomNumber4 = Math.floor(Math.random() * genidchars4.length);
+                genid4 += genidchars4.substring(genrandomNumber4, genrandomNumber4 + 1);
+            }
+genid5 += '-' + genid4 ;
+    }
+    return genid5.substring(1,genid5.length)
+  }
+
+}
+function componentToHex(c) {
+  var hex = c.toString(16);
+  return hex.length == 1 ? "0" + hex : hex;
+}
+
+function rgbToHex(r, g, b) {
+  return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+}
+function hexToRgb(hex) {
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? {
+    r: parseInt(result[1], 16),
+    g: parseInt(result[2], 16),
+    b: parseInt(result[3], 16)
+  } : null;
+}
+
+
+function getCookie(cname)
+{
+  var name = cname + "=";
+  var ca = document.cookie.split(';');
+  for(var i=0; i<ca.length; i++) 
+  {
+    var c = ca[i].trim();
+    if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+  }
+  return "";
+}
+function setcookie(cookiename,cookievalue) {
+document.cookie = cookiename + '=' + cookievalue + '; max-age='+60*60*24*7 + '; domain=erichsia7.github.io';
+}
+       
+function resize() {
+  if($(window).width() > 400 && $(window).width() <= 750) {
+      $('.card').width(($(window).width()/2)-30);
+  }
+  if($(window).width() <= 400) {
+      $('.card').width('calc(100% - 30px)');
+  }
+   if($(window).width() > 750) {
+$('.card').width(($(window).width()/3)-30);
+}
+ $('#cardbox').masonry({
+                itemSelector: '.card',
+                columnWidth: 10, //gap
+                animate: false,
+                horizontalOrder: true,
+                originTop: true
+            });
+}
+       
+$( window ).resize(function() {
+ $('#cardboxlo').width($(window).width()).height($(window).height());
+ if($(window).width() > 400 && $(window).width() <= 750) {
+      $('.card[dp="lo"]').width(($(window).width()/2)-30);
+  }
+  if($(window).width() <= 400) {
+      $('.card[dp="lo"]').width('calc(100% - 30px)');
+  }
+   if($(window).width() > 750) {
+$('.card[dp="lo"]').width(($(window).width()/3)-30);
+}
+});
+
+
+function loading() {
+ $('#cardboxlo').html('');
+ for (var ljg = 0; ljg < 32; ljg++) {
+ $('#cardboxlo').prepend('<div class="card loading" dp="lo" type="col"><div class="content"><h4>' + '&nbsp' + '</h4><div class="description">&nbsp</div></div></div>');
+}
+ if($(window).width() > 400 && $(window).width() <= 750) {
+      $('.card[dp="lo"]').width(($(window).width()/2)-30);
+  }
+  if($(window).width() <= 400) {
+      $('.card[dp="lo"]').width('calc(100% - 30px)');
+  }
+   if($(window).width() > 750) {
+$('.card[dp="lo"]').width(($(window).width()/3)-30);
+}
+ $('#cardboxlo').masonry({
+                itemSelector: '.card[dp="lo"]',
+                columnWidth: 10, //gap
+                animate: false,
+                horizontalOrder: true,
+                originTop: true
+            });
+ $('#cardboxlo').css({'position':'fixed','top':'0','left':'0','width':$(window).width(),'height':$(window).height(),'overflow':'hidden'});
+}
+       cardselect = "0" ;
+function start() {
+ $('#cardbox,#cardboxlo').html('');
+ $('#cardboxlo').css({'display':'none'});
+ if(getCookie('colorfav2') === "") {
+  $('#eelo').css({'display':'block'});
+ }
+var favcolorss = getCookie('colorfav2').substring(1,getCookie('colorfav2').length).split('&') ;
+  for (var ffpp = 0; ffpp < favcolorss.length; ffpp++) {
+   if(favcolorss[ffpp].indexOf('li') != -1) {
+    
+    var grdddli = favcolorss[ffpp].split(']') ;
+    var gdege = grdddli[1] ;
+    var gacce = grdddli[2] ;
+    var gbcce = grdddli[3] ;
+    var bgree = 'linear-gradient(' + gdege + 'deg ,' +  gacce + ' 0%,' +  gbcce + ' 100%)' ;
+    if((hexToRgb(gacce).r+hexToRgb(gacce).g+hexToRgb(gacce).b+hexToRgb(gbcce).r+hexToRgb(gbcce).g+hexToRgb(gbcce).b)/6 > 128) {
+      var gdzcolor = '#000' ;
+      var seicocor = '0' ;
+    }
+    else {
+      var gdzcolor = '#fff' ;
+      var seicocor = '255' ;
+    }
+    $('#cardbox').prepend('<div class="card" style="background:' + bgree + ';color:' + gdzcolor + ';--seico-color:' + seicocor + '" type="grd" coki="' + favcolorss[ffpp] + '"><div class="content"><h4>' + gdege + ',' +  gacce + ',' +  gbcce + '</h4><div class="description"><a link="' + 'https://erichsia7.github.io/colors/?s=2&ga=' + btoa(gacce) + '&gb=' + btoa(gbcce) + '&gdeg=' + gdege + '&open=fav" class="coloropenbtnj">查看漸層</a></div></div></div>');
+   }
+   else {
+    
+ if((hexToRgb(favcolorss[ffpp]).r+hexToRgb(favcolorss[ffpp]).g+hexToRgb(favcolorss[ffpp]).b)/3 > 128) {
+var tgzcolor = '#000' ;
+var seicocor = '0' ;
+}
+    else {
+      var tgzcolor = '#fff' ;
+var seicocor = '255' ;
+    }
+    $('#cardbox').prepend('<div class="card" style="background:' + favcolorss[ffpp] + ';color:' + tgzcolor + ';--seico-color:' + seicocor + '" type="col"><div class="content"><h4>' + favcolorss[ffpp] + '</h4><div class="description"><a link="' + 'https://erichsia7.github.io/colors/?s=1&c=' + btoa(favcolorss[ffpp]) + '&open=fav" class="coloropenbtnj">查看顏色</a></div></div></div>');
+
+   }
+  }
+ resize();
+ $( window ).resize(function() {
+  resize();
+ });
+ $('.coloropenbtnj').click(function() {
+  if(cardselect === "0") {
+        location.href = $(this).attr('link') + '&scroll=' + $(document).scrollTop() + '&r=' + genid('random') ;
+  }
+});
+ if(open === "col") {
+  $(document).scrollTop(favscroll);
+ }
+ $('.card').click(function() {
+  if(cardselect === "1") {
+  if($(this).attr('selectedy') === "1") {
+$(this).attr('selectedy','0');
+}
+  else {
+$(this).attr('selectedy','1');
+}
+  $('#selectnumber').html('已選取' + $('.card[selectedy="1"]').length + '個');
+   if($('.card').length === $('.card[selectedy="1"]').length) {
+$('#selectall').html('取消全選');
+    $('#selectall').attr('ser','1');
+}
+  else {
+$('#selectall').html('全選');
+    $('#selectall').attr('ser','0');
+}
+}
+});
+ $('.set').css({'opacity':'1'});
+ $('.set').click(function() {
+  if($('.set').attr('sdf') === "1") {
+        cardselect = "1" ;
+$('.card').attr('se',cardselect);
+  $('.selecttop').css({'top':'0px','opacity':'1'});
+  $('#cardbox').css({'transform':'translateY(55px)'});
+   $('.set').attr('sdf','0');
+  }
+else {
+cardselect = "0" ;
+$('.card').attr('se',cardselect);
+  $('.selecttop').css({'top':'-55px','opacity':'0'});
+  $('#cardbox').css({'transform':'translateY(0px)'});
+ $('.set').attr('sdf','1');
+}
+       });
+}
+       loading();
+       if(open === "col") {
+       start();
+        history.pushState(null, null,'https://erichsia7.github.io/colors/favorite/?r=' + genid('random'));
+       }
+       else {
+        setTimeout(start,888);
+       }
+       if(fado === "1") {
+        $('body').prompt({'message':'已匯入' + fadod.split(',')[0] + '個，重複' + fadod.split(',')[1] + '個，共' + fadod.split(',')[2] + '個','time':5000,'animate':'slide'});
+        history.pushState(null, null,'https://erichsia7.github.io/colors/favorite/?r=' + genid('random'));
+       }
+ //setInterval(start,3000);  
+$('.cl2').click(function() {
+    location.href = 'https://erichsia7.github.io/colors/?r=' + genid('random') ;
+});
+
+       
+$('.shfav').click(function() {
+ if (navigator.share) { 
+   navigator.share({
+      title: document.title,
+      url: 'https://erichsia7.github.io/colors/?favadd=1&favda=' + btoa(getCookie('colorfav2').substring(1,getCookie('colorfav2').length)) + '&r=' + genid('random')
+    }).then(() => {
+      
+    })
+    .catch(console.error);
+    } else {
+        shareDialog.classList.add('is-open');
+    }
+});
+       var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+ 
+  if (isChrome) {
+    //$('.de3').css({'opacity':'0.3'});
+  } else {
+       
+  }
+           $('.de3').click(function() {     
+            $('#delbg').fadeIn(333);
+ $('#delbox').css({'display':'block'});
+    setTimeout(function(){ $('#delbox').css({'transform':'translate(-50%,-50%) scale(1)','opacity':'1'});
+    }, 1); 
+});
+       
+
+$('#delyes').click(function() {
+   location.href = 'https://erichsia7.github.io/colors/?del=1&r=' + genid('random') ;
+});
+
+$('#delno').click(function() {
+  $('#delbg').fadeOut(333);  
+$('#delbox').css({'transform':'translate(-50%,-50%) scale(0.8)','opacity':'0'});
+    setTimeout(function(){ 
+    $('#delbox').css({'display':'none'});
+    }, 510);
+    });
+       
+       $('.qrt').click(function() {
+$('#qrbg').fadeIn(333);
+ $('#qrbox').css({'display':'block'});
+    setTimeout(function(){ 
+    $('#qrbox').css({'transform':'translate(-50%,-50%) scale(1)','opacity':'1'});
+    }, 1);
+  
+    
+    document.querySelector('#qr').innerHTML = '';
+var qrcode = new QRCode(document.querySelector('#qr') , {
+    text: 'https://erichsia7.github.io/colors/?favadd=1&favda=' + btoa(getCookie('colorfav2').substring(1,getCookie('colorfav2').length)) + '&r=' + genid('random'),
+    width: 512,
+    height: 512,
+    colorDark : "#000",
+    colorLight : "#fff",
+    correctLevel : QRCode.CorrectLevel.M
+});
+  });
+    $('#qrclbtn').click(function() {
+  $('#qrbg').fadeOut(333);
+       
+      $('#qrbox').css({'transform':'translate(-50%,-50%) scale(0.8)','opacity':'0'});
+    setTimeout(function(){ 
+    $('#qrbox').css({'display':'none'});
+    }, 510);
+    });
+       
+       
+       $('#selectall').click(function() {
+  if($('#selectall').attr('ser') === "0") {
+  $('#selectall').attr('ser','1');
+$('.card[selectedy!="1"]').click();
+  }
+else {
+$('#selectall').attr('ser','0');
+$('.card[selectedy="1"]').click();
+}
+});
+       
+    </script>
+</body>
